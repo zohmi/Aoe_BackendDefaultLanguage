@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Aoe_BackendDefaultLanguage>
+            <version>0.0.1</version>
+        </Aoe_BackendDefaultLanguage>
+    </modules>
+    <global>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <system_account_edit_form>Aoe_BackendDefaultLanguage_Block_Adminhtml_System_Account_Edit_Form</system_account_edit_form>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <resources>
+            <aoe_backenddefaultlanguage_setup>
+                <setup>
+                    <module>Aoe_BackendDefaultLanguage</module>
+                </setup>
+                <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+            </aoe_backenddefaultlanguage_setup>
+        </resources>
+        <events>
+            <admin_session_user_login_success>
+                <observers>
+                    <admin_session_user_login_success>
+                        <type>singleton</type>
+                        <class>Aoe_BackendDefaultLanguage_Model_Observer</class>
+                        <method>admin_session_user_login_success</method>
+                    </admin_session_user_login_success>
+                </observers>
+            </admin_session_user_login_success>
+            <admin_user_save_commit_after>
+                <observers>
+                    <admin_user_save_commit_after>
+                        <type>singleton</type>
+                        <class>Aoe_BackendDefaultLanguage_Model_Observer</class>
+                        <method>admin_user_save_commit_after</method>
+                    </admin_user_save_commit_after>
+                </observers>
+            </admin_user_save_commit_after>
+        </events>
+    </global>
+</config>
