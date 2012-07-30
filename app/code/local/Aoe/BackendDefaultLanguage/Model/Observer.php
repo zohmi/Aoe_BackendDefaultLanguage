@@ -40,13 +40,15 @@ class Aoe_BackendDefaultLanguage_Model_Observer {
         $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
         $tableName  = Mage::getSingleton('core/resource')->getTableName('admin/user');
         $localeCode = Mage::app()->getRequest()->getParam('default_language');
-        $userId     = Mage::getSingleton('admin/session')->getUser()->getId();
+        $user       = Mage::getSingleton('admin/session')->getUser();
 
-        $connection->insertOnDuplicate($tableName, array(
-            'user_id'                   => $userId,
-            'default_backend_language'  => $localeCode,
-        ));
+        if (null !== $user) {
+            $connection->insertOnDuplicate($tableName, array(
+                'user_id'                   => $user->getId(),
+                'default_backend_language'  => $localeCode,
+            ));
 
-        Mage::getSingleton('adminhtml/session')->setLocale($localeCode);
+            Mage::getSingleton('adminhtml/session')->setLocale($localeCode);
+        }
     }
 }
