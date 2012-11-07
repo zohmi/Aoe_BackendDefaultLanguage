@@ -42,6 +42,10 @@ class Aoe_BackendDefaultLanguage_Model_Observer {
         $localeCode = Mage::app()->getRequest()->getParam('default_language');
         $user       = Mage::getSingleton('admin/session')->getUser();
 
+        if (!isset($localeCode)) {
+            $localeCode = Mage::getModel('core/locale')->getLocale();
+        }
+
         if (null !== $user) {
             $connection->insertOnDuplicate($tableName, array(
                 'user_id'                   => $user->getId(),
