@@ -1,15 +1,15 @@
 <?php
 
-class Aoe_BackendDefaultLanguage_Block_Adminhtml_System_Account_Edit_Form extends Mage_Adminhtml_Block_System_Account_Edit_Form {
-
+class Aoe_BackendDefaultLanguage_Block_Adminhtml_System_Account_Edit_Form extends Mage_Adminhtml_Block_System_Account_Edit_Form
+{
     /**
      * Adding additional field to system account edit form
      * @return  void
      * @author  Daniel Zohm <daniel.zohm@aoemedia.de>
      * @since   2012-07-22
      */
-    protected function _prepareForm() {
-
+    protected function _prepareForm()
+    {
         parent::_prepareForm();
 
         $fieldset = $this->getForm()->getElement('base_fieldset');

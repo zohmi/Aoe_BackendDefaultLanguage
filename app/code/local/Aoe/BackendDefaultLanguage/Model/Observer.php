@@ -3,8 +3,8 @@
 /**
  * @TODO    Allow only existing languages
  */
-class Aoe_BackendDefaultLanguage_Model_Observer {
-
+class Aoe_BackendDefaultLanguage_Model_Observer
+{
     /**
      * Event admin_session_user_login_success
      *
@@ -13,8 +13,8 @@ class Aoe_BackendDefaultLanguage_Model_Observer {
      * @author  Daniel Zohm <daniel.zohm@aoemedia.de>
      * @since   2012-07-22
      */
-    public function admin_session_user_login_success(Varien_Event_Observer $event) {
-
+    public function admin_session_user_login_success(Varien_Event_Observer $event)
+    {
         $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
         $tableName  = Mage::getSingleton('core/resource')->getTableName('admin/user');
 
@@ -35,8 +35,8 @@ class Aoe_BackendDefaultLanguage_Model_Observer {
      * @author  Daniel Zohm <daniel.zohm@aoemedia.de>
      * @since   2012-07-22
      */
-    public function admin_user_save_commit_after(Varien_Event_Observer $event) {
-
+    public function admin_user_save_commit_after(Varien_Event_Observer $event)
+    {
         $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
         $tableName  = Mage::getSingleton('core/resource')->getTableName('admin/user');
         $localeCode = Mage::app()->getRequest()->getParam('default_language');
