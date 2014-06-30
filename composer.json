@@ -1,0 +1,16 @@
+{
+    "name":"aoepeople/aoe_backenddefaultlanguage",
+    "type":"magento-module",
+    "license":"GPLv3",
+    "homepage":"https://github.com/AOEpeople/Aoe_BackendDefaultLanguage",
+    "description":"Set user specific backend language for Magento",
+    "authors":[
+        {
+            "name":"Daniel Zohm",
+            "email":"daniel.zohm@aoe.com"
+        }
+    ],
+    "require":{
+        "magento-hackathon/magento-composer-installer":"*"
+    }
+}
