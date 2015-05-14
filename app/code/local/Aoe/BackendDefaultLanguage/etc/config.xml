@@ -42,4 +42,11 @@
             </admin_user_save_commit_after>
         </events>
     </global>
+    <phpunit>
+        <suite>
+            <modules>
+                <Aoe_BackendDefaultLanguage />
+            </modules>
+        </suite>
+    </phpunit>
 </config>
