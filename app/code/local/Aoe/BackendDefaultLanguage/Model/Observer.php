@@ -1,17 +1,21 @@
 <?php
 
 /**
- * @TODO    Allow only existing languages
+ * Class Aoe_BackendDefaultLanguage_Model_Observer
+ *
+ * @category Model
+ * @package  Aoe_BackendDefaultLanguage
+ * @author   Daniel Zohm <daniel.zohm@aoe.com>
+ * @license  GNU General Public License (GPLv3)
+ * @link     https://github.com/zohmi/Aoe_BackendDefaultLanguage
  */
 class Aoe_BackendDefaultLanguage_Model_Observer
 {
     /**
      * Event admin_session_user_login_success
      *
-     * @param   Varien_Event_Observer $event
+     * @param   Varien_Event_Observer $event Event object
      * @return  void
-     * @author  Daniel Zohm <daniel.zohm@aoemedia.de>
-     * @since   2012-07-22
      */
     public function admin_session_user_login_success(Varien_Event_Observer $event)
     {
@@ -30,12 +34,11 @@ class Aoe_BackendDefaultLanguage_Model_Observer
     }
 
     /**
-     * @param   Varien_Event_Observer $event
+     * Add value when saving admin user
+     *
      * @return  void
-     * @author  Daniel Zohm <daniel.zohm@aoemedia.de>
-     * @since   2012-07-22
      */
-    public function admin_user_save_commit_after(Varien_Event_Observer $event)
+    public function admin_user_save_commit_after()
     {
         $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
         $tableName  = Mage::getSingleton('core/resource')->getTableName('admin/user');
@@ -47,10 +50,13 @@ class Aoe_BackendDefaultLanguage_Model_Observer
         }
 
         if (null !== $user) {
-            $connection->insertOnDuplicate($tableName, array(
-                'user_id'                   => $user->getId(),
-                'default_backend_language'  => $localeCode,
-            ));
+            $connection->insertOnDuplicate(
+                $tableName,
+                [
+                    'user_id'                  => $user->getId(),
+                    'default_backend_language' => $localeCode,
+                ]
+            );
 
             Mage::getSingleton('adminhtml/session')->setLocale($localeCode);
         }
