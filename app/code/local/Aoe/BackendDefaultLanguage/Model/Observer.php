@@ -26,7 +26,7 @@ class Aoe_BackendDefaultLanguage_Model_Observer
             ->from($tableName, 'default_backend_language')
             ->where('user_id = ?', $event->getUser()->getId());
 
-        $localeCode = $connection->fetchOne($select);
+        $localeCode = ($connection->fetchOne($select)) ? $connection->fetchOne($select) : 'en_US';
 
         if (false !== $localeCode) {
             Mage::getSingleton('adminhtml/session')->setLocale($localeCode);
